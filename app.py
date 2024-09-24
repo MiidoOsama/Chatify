@@ -43,7 +43,10 @@ def get_server_by_id(id: str):
 def create_server(server: ServerSchema):
     new_server = ServerModel(**server.dict())
     result = servers_collection.insert_one(new_server.to_dict())
-    return {"id": str(result.inserted_id)}
+    try:
+        return {"id": str(result.inserted_id) , "message" : "Created Sucessfully" , "status" : True}
+    except Exception as e : 
+        return {"message" : "There is something wrong!" , "status" : False}
 
 # 4. Update a server by ID
 @app.put("/servers/update/{id}")
