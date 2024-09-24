@@ -4,6 +4,8 @@ from pymongo import MongoClient
 from database.models import ServerModel
 from database.schemas import ServerSchema
 from bson import ObjectId
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
@@ -12,6 +14,13 @@ client = MongoClient("mongodb+srv://chatify:chatify@chatify.dzioy.mongodb.net/?r
 db = client["chatify"]
 servers_collection = db["servers"]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"],  
+    allow_headers=["*"],  
+)
 # 1. Get all servers
 @app.get("/servers")
 def get_all_servers():
