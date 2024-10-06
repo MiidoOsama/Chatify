@@ -2,4 +2,10 @@ fastapi
 uvicorn
 pymongo
 pydantic
-virtualenv
+dnspython
+passlib
+cryptography
+openpyxl
+python-jose
+bcrypt
+python-multipart
