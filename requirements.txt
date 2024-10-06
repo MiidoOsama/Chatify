@@ -9,3 +9,4 @@ openpyxl
 python-jose
 bcrypt
 python-multipart
+python-dotenv

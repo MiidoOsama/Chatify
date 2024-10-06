@@ -10,14 +10,15 @@ from oauth import get_current_user
 from jwttoken import create_access_token
 from fastapi.security import OAuth2PasswordRequestForm
 from hashing import Hash
-
+import os
+from dotenv import load_dotenv
 
 app = FastAPI()
 
 # Connect with mongodb
-client = MongoClient(
-    "mongodb+srv://chatify:chatify@chatify.dzioy.mongodb.net/?retryWrites=true&w=majority&appName=Chatify"
-)
+load_dotenv()
+client = MongoClient(os.environ['MONGODB_URI'])
+
 db = client["chatify"]
 servers_collection = db["servers"]
 # Collection for users
